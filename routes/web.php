@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Http\Controllers\ProductController;
 
@@ -23,6 +24,10 @@ Route::get('/produk/{produk}', [ProductController::class, 'show'])->name('produc
 Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
 Route::post('/keranjang', [CartController::class, 'store'])->name('cart.store');
 Route::delete('/keranjang/{product}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+Route::post('/order/cekongkir', [OrderController::class, 'cekOngkir'])->name('order.ongkir');
+Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+Route::get('/pembayaran', [OrderController::class, 'show'])->name('order.payment');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

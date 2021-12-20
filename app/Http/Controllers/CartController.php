@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
@@ -35,7 +36,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        Cart::add($request->id, $request->name, 1, $request->price)->associate('App/Models/Product');
+        Cart::add($request->id, $request->name, $request->qty, $request->price, $request->notes,)->associate('App/Models/Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Berhasil ditambahkan!');
     }
