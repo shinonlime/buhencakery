@@ -14,10 +14,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word(),
+            'nama' => $this->faker->word(),
             'slug' => $this->faker->word(),
-            'price' => $this->faker->numberBetween(100000, 200000),
-            'description' => $this->faker->sentence(10),
+            'harga' => $this->faker->numberBetween(100000, 200000),
+            'deskripsi' => $this->faker->sentence(10),
         ];
     }
 }

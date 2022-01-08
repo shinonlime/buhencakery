@@ -16,13 +16,15 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('name');
+            $table->string('nama');
             $table->string('email')->nullable();
             $table->string('no_telp');
-            $table->text('address')->nullable();
-            $table->date('date');
-            $table->time('time');
+            $table->text('alamat')->nullable();
+            $table->date('tanggal');
+            $table->time('jam');
             $table->integer('total')->nullable();
+            $table->boolean('status')->default(false);
+            $table->boolean('status_pembayaran')->default(false);
             $table->timestamps();
         });
     }

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\Payment;
+use Midtrans;
 use App\Models\User;
+use Midtrans\Config;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Livewire\Livewire;
 
 class OrderController extends Controller
 {
@@ -70,23 +74,26 @@ class OrderController extends Controller
 
         $order = Order::create([
             'user_id' => auth()->user()->id,
-            'name' => auth()->user()->name,
+            'nama' => auth()->user()->name,
+            'email' => auth()->user()->email,
             'no_telp' => $request->notelp,
-            'address' => $request->address2,
-            'date' => $request->date,
-            'time' => $request->time,
+            'alamat' => $request->address2,
+            'tanggal' => $request->date,
+            'jam' => $request->time,
             'total' => $total
         ]);
         foreach (Cart::content() as $item){
             OrderProduct::create([
                 'order_id' => $order->id,
                 'product_id' => $item->id,
-                'quantity' => $item->qty,
-                'notes' => $item->notes,
+                'jumlah' => $item->qty,
+                'catatan' => $item->notes,
             ]);
         }
 
         Cart::destroy();
+
+        return redirect()->to('/pembayaran'.'/'.$order->id);
     }
 
     public function payment(Request $request)
@@ -99,11 +106,78 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
+
+    // public function show($id)
+    // {
+    //     if(!Auth::user()){
+    //         return redirect()->route('login');
+    //     }
+
+    //     $orders = auth()->user()->orders()->with('products')->get();
+        
+    //     $order = Order::find($id);
+        
+    //     // Set your Merchant Server Key
+    //     \Midtrans\Config::$serverKey = 'SB-Mid-server-EznkgWH38RPymn842AWBic34';
+    //     // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+    //     \Midtrans\Config::$isProduction = false;
+    //     // Set sanitization on (default)
+    //     \Midtrans\Config::$isSanitized = true;
+    //     // Set 3DS transaction for credit card to true
+    //     \Midtrans\Config::$is3ds = true;
+
+    //     $params = array(
+    //         'transaction_details' => array(
+    //             'order_id' => rand(),
+    //             'gross_amount' => $order->total,
+    //         ),
+
+    //         'customer_details' => array(
+    //             'first_name'       => "",
+    //             'last_name'        => $order->name,
+    //             'email'            => "test@test.com",
+    //             'phone'            => $order->no_telp
+    //         )
+            
+    //     );
+
+    //     $this->snapToken = \Midtrans\Snap::getSnapToken($params);
+
+    //     return view('payment', ['orders' => $orders, 'snapToken' => $this->snapToken]);
+    // }
+
     public function show(Order $order)
     {
-        $orders = auth()->user()->orders()->with('products')->get();
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-EznkgWH38RPymn842AWBic34';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
 
-        return view('payment')->with('orders', $orders);
+        $order = Order::find('user_id', Auth::id())->first();
+
+        $status = \Midtrans\Transaction::status($order->id);
+        $status = json_decode(json_encode($status), true);
+        $order_id = $status['order_id'];
+        $gross_amount = $status['gross_amount'];
+        $bank = $status['va_numbers'][0]['bank'];
+        $va_number = $status['va_numbers'][0]['va_number'];
+        $transaction_status = $status['transaction_status'];
+        $transaction_time =  $status['transaction_time'];
+        $deadline = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($transaction_time)));
+
+        return view('list-order', [
+            'order' => $order,
+            'order_id' => $order_id,
+            'gross_amount' => $gross_amount,
+            'bank' => $bank,
+            'va_number' => $va_number,
+            'transaction_status' => $transaction_status,
+            'deadline' => $deadline
+        ]);
     }
 
     /**

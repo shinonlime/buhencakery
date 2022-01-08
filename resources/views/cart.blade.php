@@ -16,7 +16,7 @@
             @foreach (Cart::content() as $item)
                 <li class="list-group-item">
                     <div class="d-flex">
-                        <img src="https://source.unsplash.com/500x500?cake" alt="" class="rounded  my-2 me-2" width="100" height="100">
+                        <img src="{{ asset('/storage/'.$item->image) }}" alt="" class="rounded my-2 me-2" style="max-height: 100px;">
                         <div class="col mt-2 me-2">
                             <h5>{{ $item->name }}</h5>
                             <small class="text-muted">Jumlah: {{ $item->qty }}</small><br>

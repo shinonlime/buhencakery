@@ -36,13 +36,13 @@
 
                         <div class="col-12 mb-2">
                             <label for="notelp" class="form-label">No. Telp/HP</label>
-                            <input type="text" class="form-control" id="notelp" name="notelp">
+                            <input type="text" class="form-control" id="notelp" name="notelp" value="{{ old('notelp') }}">
                         </div>
                         <div class="col-12 mb-2">
                             <label for="name" class="form-label">Untuk tanggal dan jam</label>
                             <div class="input-group">
-                                <input type="date" name="date" class="form-control">
-                                <input type="time" name="time" class="form-control">
+                                <input type="date" name="date" class="form-control" value="{{ old('date') }}">
+                                <input type="time" name="time" class="form-control" value="{{ old('time') }}">
                             </div>
                         </div>
                         <div class="mb-2">

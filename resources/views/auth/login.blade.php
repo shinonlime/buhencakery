@@ -4,13 +4,13 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="text-center">
-                    <img class="my-4" src="https://icons.getbootstrap.com/assets/img/icons-hero.png" alt="" width="72" height="57">
-                    <h1 class="h3 mb-3 fw-normal">Masuk</h1>
+                    <img class="my-4" src="{{ asset('Logo Buhen.png') }}" alt="" width="200">
+                    <h1 class="h3 mb-3 fw-normal">Login</h1>
                 </div>
             
                 <div class="form-floating mb-2">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" type="email" name="email" :value="old('email')">
-                    <label for="floatingInput">Email address</label>
+                    <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-2">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" type="password" name="password">
@@ -24,10 +24,10 @@
                     </label>
                 </div>
 
-                <a href="{{ route('login') }}" class="link-secondary">Lupa password?</a>
+                <a href="{{ route('password.request') }}" class="link-secondary">Lupa password?</a>
                 <button class="w-100 btn btn-secondary mt-4" type="submit">Masuk</button>
-                <p class="text-muted text-center my-2">Atau</p>
-                <a href="{{ url('auth/google') }}" class="btn btn-secondary text-white bi bi-google w-100"> Masuk dengan Google</a>
+                {{-- <p class="text-muted text-center my-2">Atau</p> --}}
+                {{-- <a href="{{ url('auth/google') }}" class="btn btn-secondary text-white bi bi-google w-100"> Masuk dengan Google</a> --}}
             </form>
         </div>
     </div>

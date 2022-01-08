@@ -9,11 +9,11 @@ class Order extends Model
 {
     protected $fillable = [
         'user_id',
-        'name',
+        'nama',
         'no_telp',
-        'address',
-        'date',
-        'time',
+        'alamat',
+        'tanggal',
+        'jam',
         'total'
     ];
 
@@ -24,6 +24,6 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity', 'notes');
+        return $this->belongsToMany(Product::class)->withPivot('jumlah', 'catatan');
     }
 }

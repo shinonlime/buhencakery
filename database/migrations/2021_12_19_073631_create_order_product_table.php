@@ -17,8 +17,8 @@ class CreateOrderProductTable extends Migration
             $table->foreignId('order_id')->constrained('orders');
             $table->foreignId('product_id')->constrained('products');
             $table->primary(['order_id', 'product_id']);
-            $table->integer('quantity');
-            $table->text('notes')->nullable();
+            $table->integer('jumlah');
+            $table->text('catatan')->nullable();
             $table->timestamps();
         });
     }
@@ -33,3 +33,4 @@ class CreateOrderProductTable extends Migration
         Schema::dropIfExists('order_product');
     }
 }
+
