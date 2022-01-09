@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row g-5 d-flex justify-content-center">
             <div class="col-md-7 col-lg-8">
-            <h4 class="my-3">Billing address</h4>
+            <h1 class="my-3">Order</h1>
                 <div class="row g-3">
                     <div class="col-12">
                         <form action="{{ route('order.ongkir') }}" method="POST">

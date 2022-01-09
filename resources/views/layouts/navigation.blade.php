@@ -27,7 +27,12 @@
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}&nbsp;</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{{ route('order.list') }}">List order</a></li>
+                    @if (Auth::user()->is_admin == true)
+                        <li><a class="dropdown-item" href="{{ route('admin.index') }}">Dashboard</a></li>
+                    @else
+                        <li><a class="dropdown-item" href="{{ route('order.list') }}">List order</a></li>
+                    @endif
+                    
                     <li><hr class="dropdown-divider"></li>
                     <form method="POST" action="{{ route('logout') }}">
                     @csrf

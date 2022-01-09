@@ -54,25 +54,22 @@
           <div class="pt-3">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link" aria-current="page" href="{{ route('admin.index') }}">
                   <span data-feather="home"></span>
                   Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('product.index') }}">
                   <span data-feather="shopping-cart"></span>
                   Products
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
               <li>
-                <a class="nav-link px-3" href="route('logout')"onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <a class="nav-link px-3" href="route('logout')"onclick="event.preventDefault(); this.closest('form').submit();"><span class="bi bi-box-arrow-left"></span>&nbsp; Logout</a>
+                </form>
               </li>
           </div>
         </nav>

@@ -46,14 +46,24 @@
             @foreach ($order->products as $item)
             <li class="list-group-item">
                 <div class="d-flex">
-                    <img src="https://source.unsplash.com/500x500?cake" alt="" class="rounded  my-2 me-2" width="100" height="100">
+                    <img src="{{ asset('storage/'.$item->gambar) }}" alt="" class="rounded  my-2 me-2" width="100" height="100">
                     <div class="col mt-2 me-2">
                         <h5>{{ $item->nama }}</h5>
                         <small class="text-muted">Jumlah: {{ $item->pivot->jumlah }}</small><br>
                         <small class="text-muted d-none d-md-block">{{ $item->pivot->catatan }}</small>
                     </div>
                     <div>
-                        <span class="badge bg-primary">{{ $transaction_status }}</span>
+                        @if ($order->status == false)
+                            @if ($transaction_status == 'pending')
+                                <span class="badge bg-primary">Perlu dibayar</span>
+                            @elseif ($transaction_status == 'settlement')
+                                <span class="badge bg-success">Pembayaran berhasil</span>
+                            @elseif ($transaction_status == 'failure')
+                                <span class="badge bg-danger">Pembayaran gagal</span>
+                            @endif
+                        @else
+                            <span class="badge bg-danger">Pesanan dibatalkan</span>
+                        @endif
                     </div>
                     
                 </div>

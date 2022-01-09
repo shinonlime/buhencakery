@@ -18,7 +18,7 @@
                 </div>
             
                 <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="remember">
                     <label class="form-check-label" for="flexCheckDefault">
                     Ingat saya
                     </label>

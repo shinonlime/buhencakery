@@ -13,8 +13,8 @@
                     $gross_amount = $status['gross_amount'];
                     if($status['payment_type'] == 'bank_transfer')
                     {
-                        //BCA
-                        if($status['va_numbers'][0]['bank'] == 'bca'){
+                        if ($status['va_numbers']) {
+                            if($status['va_numbers'][0]['bank'] == 'bca'){
                             $bank = $status['va_numbers'][0]['bank'];
                             $va_number = $status['va_numbers'][0]['va_number'];
                         }
@@ -28,9 +28,10 @@
                             $bank = $status['va_numbers'][0]['bank'];
                             $va_number = $status['permata_va_number'];
                         }
-                        //PERMATA
-                        $bank = 'permata';
-                        $va_number = $status['va_numbers'][0]['va_number'];
+                        } else {
+                            $bank = 'permata';
+                            $va_number = $status['va_numbers'][0]['va_number'];
+                        }
                     } else if($status['payment_type'] == 'echannel'){
                         //MANDIRI
                         $bank = 'mandiri';
@@ -43,7 +44,7 @@
                 @foreach ($orders->products as $item)
                 <li class="list-group-item">
                     <div class="d-flex">
-                        <img src="https://source.unsplash.com/500x500?cake" alt="" class="rounded  my-2 me-2" width="100" height="100">
+                        <img src="{{ asset('storage/'.$item->gambar) }}" alt="" class="rounded  my-2 me-2" width="100" height="100">
                         <div class="col mt-2 me-2">
                             <h5>{{ $item->nama }}</h5>
                             <small class="text-muted">Jumlah: {{ $item->pivot->jumlah }}</small><br>
@@ -52,7 +53,7 @@
                         <div>
                             @if ($orders->status == false)
                                 @if ($transaction_status == 'pending')
-                                    <span class="badge bg-primary">Pembayaran ditunda</span>
+                                    <span class="badge bg-primary">Perlu dibayar</span>
                                 @elseif ($transaction_status == 'settlement')
                                     <span class="badge bg-success">Pembayaran berhasil</span>
                                 @elseif ($transaction_status == 'failure')

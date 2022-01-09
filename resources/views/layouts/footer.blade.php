@@ -9,8 +9,8 @@
         </ul>
     
         <ul class="nav justify-content-start col-md-4 justify-content-md-end">
-            <li class=""><a class="text-muted bi bi-instagram" href="https://www.instagram.com/buhen.cakery/" style="text-decoration: none" target="_blank"> buhen.cakery</a></li>
-            <li class="ms-3"><a class="text-muted bi bi-whatsapp" href="https://api.whatsapp.com/send/?phone=6285155010052" style="text-decoration: none" target="_blank"> 62812392122</a></li>
+            <li class=""><a class="text-muted bi bi-instagram" href="https://www.instagram.com/buhen.cakery/" style="text-decoration: none" target="_blank">&nbsp;buhen.cakery</a></li>
+            <li class="ms-3"><a class="text-muted bi bi-whatsapp" href="https://api.whatsapp.com/send/?phone=6285155010052" style="text-decoration: none" target="_blank">&nbsp;+6285155010052</a></li>
         </ul>
     </footer>
 </div>
