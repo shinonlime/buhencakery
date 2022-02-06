@@ -9,13 +9,33 @@
     <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
         <label for="name" class="form-label mt-2">Nama Produk</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+        @error('name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
         <label for="price" class="form-label mt-2">Harga</label>
-        <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
+        <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}">
+        @error('price')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
         <label for="description" class="form-label mt-2">Deskripsi Produk</label>
-        <textarea type="number" class="form-control" id="description" style="height: 100px" name="description">{{ old('description') }}</textarea>
+        <textarea type="number" class="form-control @error('description') is-invalid @enderror" id="description" style="height: 100px" name="description">{{ old('description') }}</textarea>
+        @error('description')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
         <label for="pict" class="form-label mt-2">Gambar Produk</label>
-        <input class="form-control" type="file" id="pict" name="pict">
+        <input class="form-control @error('pict') is-invalid @enderror" type="file" id="pict" name="pict">
+        @error('pict')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
         <button class="btn btn-secondary mt-4" type="submit">Submit</button>
     </form>
 </div>

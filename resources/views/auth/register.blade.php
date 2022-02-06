@@ -7,6 +7,8 @@
                     <img class="my-4" src="{{ asset('Logo Buhen.png') }}" alt="" width="200">
                     <h1 class="h3 mb-3 fw-normal">Registrasi</h1>
                 </div>
+
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
           
                 <div class="form-floating mb-2">
                     <input type="text" class="form-control" id="floatingInput" type="text" name="name" :value="old('name')" required autofocus placeholder="name example">

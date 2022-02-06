@@ -15,14 +15,25 @@
                                 <input type="text" class="form-control" id="address" name="address">
                                 @endisset
                                 <input type="hidden" class="form-control" id="from" name="from" value="Buhen Cakery">
-                                <button class="btn btn-outline-secondary" type="submit">Cek ongkir</button>
+                                <button class="btn btn-outline-secondary" type="submit" onclick="undisable()">Cek ongkir</button>
                             </div>
                         </form>
                     </div>
                     <form action="{{ route('order.store') }}" method="POST">
                         @csrf
+                        <div class="d-flex">
+                            <div class="col-3 me-2">
+                                <label for="rtrw" class="form-label">RT/RW</label>
+                                <input type="text" class="form-control" id="rtrw" name="rtrw" value="{{ old('rtrw') }}">
+                            </div>
+                            <div class="col-4">
+                                <label for="blokno" class="form-label">Blok/No.</label>
+                                <input type="text" class="form-control" id="blokno" name="blokno" value="{{ old('blokno') }}">
+                            </div>
+                        </div>
+                        
                         @isset($olddes)
-                        <input type="hidden" value="{{ $olddes }}" name="address2">
+                            <input type="hidden" value="{{ $olddes }}" name="address2">
                         @endisset
                         {{-- <div class="col-12 mb-2">
                             <label for="name" class="form-label">Nama</label>
@@ -47,18 +58,17 @@
                         </div>
                         <div class="mb-2">
                             <div class="form-check mb-2">
-                                <input id="credit" name="courierMethod" type="radio" class="form-check-input" checked>
+                                {{-- <input id="credit" name="courierMethod" type="radio" class="form-check-input" checked> --}}
                                 @isset($ongkir)
-                                <input id="credit" name="courierMethod" type="radio" class="form-check-input" value="{{ $ongkir }}" checked>
+                                <input id="courierMethod" name="courierMethod" type="radio" class="form-check-input" value="{{ $ongkir }}">
                                 <label class="form-check-label" for="courierMethod">Kurir Buhen* <span class="text-muted">(@currency($ongkir))</span><br>
                                 @else
-                                <label class="form-check-label" for="credit">Kurir Buhen*<br>
+                                <label class="form-check-label" for="courierMethod">Kurir Buhen*<br>
                                 @endisset
-                                <small class="text-muted">*Rp1.000/km<br>*Khusus Birthday Cake Rp30.000(≤ 10km), Rp50.000(≤ 25km)
-                                </small></label>
+                                <small class="text-muted">*Rp1.000/km</small></label>
                             </div>
                             <div class="form-check">
-                                <input id="debit" name="courierMethod" type="radio" class="form-check-input" value="0">
+                                <input id="debit" name="courierMethod" type="radio" class="form-check-input" value="0" checked>
                                 <label class="form-check-label" for="debit">Ambil sendiri</label>
                             </div>
                         </div>
@@ -76,5 +86,9 @@
 
             });
         });
+
+        function undisable() {
+            document.getElementById("courierMethod").disabled = false;
+        }
     </script>
 </x-app-layout>

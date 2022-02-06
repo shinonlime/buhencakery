@@ -1,6 +1,6 @@
 <div class="container">
     @if($order->status_pembayaran == false)
-    <h1 class="my-4">Detail Order</h1>
+    <h1 class="my-4">Pembayaran</h1>
     <div class="d-flex justify-content-center">
         <ul class="list-group w-100 w-lg-75 shadow">
             <h6 class="">List Produk:</h6>

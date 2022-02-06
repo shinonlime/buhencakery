@@ -64,7 +64,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('/admin/dashboard');
+        return redirect('/admin/produk')->with('success', 'Produk berhasil dibuat!');
     }
 
     /**

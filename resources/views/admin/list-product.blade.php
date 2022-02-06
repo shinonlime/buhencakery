@@ -5,6 +5,13 @@
     <h1 class="h2">Daftar Produk</h1>
     <a href="{{ route('product.create') }}" class="btn btn-secondary">Tambah produk</a>
 </div>
+
+@if (session()->has('success'))
+<div class="alert alert-success" role="alert">
+    {{ session()->get('success') }}
+</div>
+@endif
+
 @foreach ($products as $product)
     <div class="d-flex pt-3">
         <div class="pb-3 mb-0 lh-sm border-bottom w-100">
@@ -19,23 +26,23 @@
                 <span class="d-block">{{ $product->deskripsi }}</span>
                 <div class="modal fade" id="delete-{{ $product->id }}" tabindex="-1" aria-labelledby="delete-{{ $product->id }}-label" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="delete-{{ $product->id }}-label">Hapus {{ $product->nama }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Anda yakin ingin menghapus {{ $product->nama }}?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
-                            <a href="/admin/produk/hapus/{{ $product->id }}" class="btn btn-danger text-white">Hapus</a>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="delete-{{ $product->id }}-label">Hapus {{ $product->nama }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Anda yakin ingin menghapus {{ $product->nama }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                                <a href="/admin/produk/hapus/{{ $product->id }}" class="btn btn-danger text-white">Hapus</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 @endforeach
 
 @endsection

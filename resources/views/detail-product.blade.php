@@ -26,7 +26,7 @@
                             <textarea class="form-control" placeholder="Catatan" id="floatingTextarea2" style="height: 100px" name="notes"></textarea>
                             <label for="floatingTextarea2">Catatan</label>
                         </div>
-                        <button class="btn btn-outline-secondary flex-shrink-0" type="submit"><i class="bi-cart-fill me-1"></i>Add to cart</button>
+                        <button class="btn btn-outline-secondary flex-shrink-0" type="submit"><i class="bi-cart-fill me-1"></i>Masukkan ke Keranjang</button>
                     </form>
                 </div>
             </div>

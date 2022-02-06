@@ -22,7 +22,7 @@
         </div>
         <div class="d-flex">
             <div class="my-auto">
-                <a href="{{ route('cart.index') }}" class="text-decoration-none text-white bi bi-cart3"> ({{ Cart::count() }})</a>
+                <a href="{{ route('cart.index') }}" class="text-decoration-none text-black bi bi-cart3"> ({{ Cart::count() }})</a>
             </div>
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}&nbsp;</a>

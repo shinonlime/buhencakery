@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="my-4">List order</h1>
+    <h1 class="my-4">Daftar Pesanan</h1>
         @if ( $order->count() > 0)
         <div class="col">
             @foreach ($order as $orders)
@@ -56,7 +56,7 @@
                                     <span class="badge bg-primary">Perlu dibayar</span>
                                 @elseif ($transaction_status == 'settlement')
                                     <span class="badge bg-success">Pembayaran berhasil</span>
-                                @elseif ($transaction_status == 'failure')
+                                @elseif ($transaction_status == 'expire')
                                     <span class="badge bg-danger">Pembayaran gagal</span>
                                 @endif
                             @else

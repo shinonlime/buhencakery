@@ -2,7 +2,7 @@
 
 @section('section')
 <div class="container">
-    <h1 class="my-4">Detail order</h1>
+    <h1 class="my-4">Detail Pesanan</h1>
     <div class="col">
         <ul class="list-group mb-3">
             <?php 
@@ -86,12 +86,10 @@
                             Jam
                             <span class="ms-4">{{ $order->jam }}</span>
                         </li>
-                        @isset($order->address)
                         <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                             Alamat
-                            <span class="text-end text-wrap ms-4">{{ $order->alamat }}</span>
+                            <span class="text-end ms-4">{!! $order->alamat !!}</span>
                         </li>
-                        @endisset
                     </ul>
                 </div>
             </li>

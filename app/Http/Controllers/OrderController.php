@@ -11,6 +11,7 @@ use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Auth\Events\Validated;
 use Livewire\Livewire;
 
 class OrderController extends Controller
@@ -65,19 +66,28 @@ class OrderController extends Controller
 
         // dd($request);
 
-        if ($request->courierMethod >= 0){
+
+
+        if ($request->courierMethod > 0){
             foreach (Cart::content() as $item){
                 $subtotal += $item->price * $item->qty;
             }
             $total = $subtotal + $request->courierMethod;
+        } else {
+            foreach (Cart::content() as $item){
+                $subtotal += $item->price * $item->qty;
+            }
+            $total = $subtotal;
         }
+
+        $alamat = $request->address2.'<br>No. '.$request->blokno.' '.$request->rtrw;
 
         $order = Order::create([
             'user_id' => auth()->user()->id,
             'nama' => auth()->user()->name,
             'email' => auth()->user()->email,
             'no_telp' => $request->notelp,
-            'alamat' => $request->address2,
+            'alamat' => $alamat,
             'tanggal' => $request->date,
             'jam' => $request->time,
             'total' => $total
