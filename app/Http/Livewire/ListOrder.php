@@ -28,8 +28,6 @@ class ListOrder extends Component
         $this->order = auth()->user()->orders()->with('products')->first();
 
         // dd($this->order);
-
-        $this->date = date('d-m-Y', strtotime($this->order->tanggal));
     }
 
     public function render()

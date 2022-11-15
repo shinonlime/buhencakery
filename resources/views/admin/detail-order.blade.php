@@ -79,6 +79,10 @@
                 <div class="" id="detail-transaksi-{{ $order->id }}">
                     <ul class="list-group w-100">
                         <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                            Nama
+                            <span class="ms-4">{{ $order->user->name }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                             Tanggal
                             <span class="ms-4">{{ $date }}</span>
                         </li>

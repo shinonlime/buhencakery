@@ -30,7 +30,7 @@
                     </label>
                 </div>
 
-                {{-- <a href="{{ route('password.request') }}" class="link-secondary">Lupa password?</a> --}}
+                <a href="{{ route('password.request') }}" class="link-secondary">Lupa password?</a>
                 <button class="w-100 btn btn-secondary mt-4" type="submit">Masuk</button>
                 {{-- <p class="text-muted text-center my-2">Atau</p> --}}
                 {{-- <a href="{{ url('auth/google') }}" class="btn btn-secondary text-white bi bi-google w-100"> Masuk dengan Google</a> --}}

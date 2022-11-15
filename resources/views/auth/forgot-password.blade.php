@@ -4,9 +4,15 @@
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
                 <div class="text-center">
-                    <img class="my-4" src="https://icons.getbootstrap.com/assets/img/icons-hero.png" alt="" width="72" height="57">
+                    <img class="my-4" src="{{ asset('Logo Buhen.png') }}" alt="" width="200">
                     <h1 class="h3 mb-3 fw-normal">Lupa password</h1>
                 </div>
+
+                <!-- Session Status -->
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
             
                 <div class="form-floating mb-2">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" type="email" name="email" :value="old('email')">

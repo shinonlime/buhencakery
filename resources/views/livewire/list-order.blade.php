@@ -40,6 +40,8 @@
                     $transaction_status = $status['transaction_status'];
                     $transaction_time =  $status['transaction_time'];
                     $deadline = date('d-m-Y H:i:s', strtotime('+1 day', strtotime($transaction_time)));
+
+                    $date = date('d-m-Y', strtotime($orders->tanggal));
                 ?>
                 @foreach ($orders->products as $item)
                 <li class="list-group-item">
